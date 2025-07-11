@@ -1,0 +1,20 @@
+<div class="product-page">
+  <div class="page-header">
+    <h1 class="page-title">Product Management</h1>
+    <button class="add-product-btn" (click)="openAddProductModal()">
+      <i class="material-icons">add</i>
+      Add Product
+    </button>
+  </div>
+
+  <div class="products-grid">
+    <app-product-card [product]="prod" (edit)="editProduct(prod._id)" (delete)="deleteProduct(prod._id)"  *ngFor="let prod of products"></app-product-card>
+  </div>
+</div>
+
+<app-product-modal
+  [isOpen]="isModalOpen"
+  [product]="selectedProduct"
+  (close)="onModalClose()"
+  (save)="onProductSave($event)">
+</app-product-modal>

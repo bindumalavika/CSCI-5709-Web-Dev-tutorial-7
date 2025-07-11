@@ -1,0 +1,39 @@
+<div class="product-card">
+  <div class="product-image">
+    <img [src]="product.imageUrl" alt="{{ product.name }}">
+    <div class="placeholder-icon" style="display: none;">
+      <i class="material-icons">image</i>
+    </div>
+  </div>
+  <div class="product-info">
+    <h3 class="product-name">{{ product.name }}</h3>
+    <p class="product-description">{{ product.description }}</p>
+    <div class="product-details">
+      <div class="product-price">${{ product.price }}</div>
+      <div class="product-quantity">
+        <span class="quantity-label">Quantity</span>
+        <span class="quantity-value" [ngClass]="{
+          'low-stock': product.quantity <= 10 && product.quantity > 0,
+          'out-of-stock': product.quantity === 0
+        }">{{ product.quantity }}</span>
+      </div>
+    </div>
+    <div class="product-actions">
+      <span class="stock-status" [ngClass]="{
+        'in-stock': product.quantity > 10,
+        'low-stock': product.quantity <= 10 && product.quantity > 0,
+        'out-of-stock': product.quantity === 0
+      }">
+        {{ product.quantity === 0 ? 'Out of Stock' : (product.quantity <= 10 ? 'Low Stock' : 'In Stock') }}
+      </span>
+      <div class="action-buttons">
+        <button class="action-btn edit-btn" (click)="onEdit(product._id)">
+          <i class="material-icons">edit</i>
+        </button>
+        <button class="action-btn delete-btn" (click)="onDelete(product._id)">
+          <i class="material-icons">delete</i>
+        </button>
+      </div>
+    </div>
+  </div>
+</div>
