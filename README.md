@@ -2,7 +2,8 @@
 
 Angular Tutorial: node version: v18.18.1
 npm version: 10.9.2
-Live link or netify link: https://mean-tutorial-1.netlify.app/
+Live link or netify link: https://product-management-mean-stack.netlify.app/
+Render url: https://product-mangement-backend.onrender.com
 
 This project was generated with [Angular CLI](https://github.com/angular/angular-cli) version 17.3.17.
 
