@@ -1,23 +1,25 @@
 import { Injectable } from '@angular/core';
 import { HttpClient } from '@angular/common/http';
 import { Observable, of, tap } from 'rxjs';
-import { environment } from '../../environments/environment.prod';
+import { environment } from '../../environments/environment';
 
 @Injectable({
   providedIn: 'root',
 })
 export class ProductService {
-  private appUrl = `${environment.apiUrl}`;
   private cacheKey = 'cachedProducts';
   constructor(private http: HttpClient) {}
 
   getProducts(): Observable<any[]> {
     const cachedProducts = localStorage.getItem(this.cacheKey);
+
     if (cachedProducts) {
       const parsedProducts = JSON.parse(cachedProducts);
       return of(parsedProducts);
     }
+
     console.log('Fetching products from API');
+    
     return this.http.get<any[]>(`${environment.apiUrl}/products`).pipe(
       tap((products) => {
         localStorage.setItem(this.cacheKey, JSON.stringify(products));
